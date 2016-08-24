@@ -1,0 +1,10 @@
+{
+  "APP_TITLE" : "Boilerplate UI",
+  "NAVBAR_APP" : "Home",
+  "NAVBAR_ABOUT" : "About",
+  "NAVBAR_GOOGLE" : "Google",
+  "NAVBAR_LINK" : "https://www.google.com/",
+
+  "FOOTER" : "This is a footer, the link goes to Google.com",
+  "FOOTER_LINK" : "https://www.google.com/"
+}

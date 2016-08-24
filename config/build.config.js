@@ -7,7 +7,7 @@ module.exports = {
      * development and the `compile_dir` folder is where our app resides once it's
      * completely built.
      */
-    appName: 'starter-project',
+    appName: 'boilerplate-UI',
     build_dir: 'build',
     compile_dir: 'bin',
     now: new Date().getTime(),
@@ -25,8 +25,8 @@ module.exports = {
         js: ['app.js', '!src/**/*.spec.js', 'src/**/*.js'],
         tpl: ['src/directives/**/*.html'],
         html: ['src/index.html'],
-        less: ['src/assets/less/*.less'],
-        assets: ['src/assets/**', '!assets/less/'],
+        less: ['src/less/*.less'],
+        assets: ['src/assets/**'],
         images: ['src/assets/images/**/*'],
         config: ['config/**/*']
     },
