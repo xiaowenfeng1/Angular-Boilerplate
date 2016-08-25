@@ -33,12 +33,43 @@ var runSequence = require('run-sequence');
 var pkg = JSON.parse(fs.readFileSync('./package.json'));
 var userConfig = require('./config/build.config.js');
 
+// Delete build folder
+gulp.task('clean:build', function () {
+    return gulp.src([userConfig.build_dir], {read:false})
+        .pipe(clean());
+});
+
+// Copy files in src to build dir
+// html files in src are not used. They are for debugging purposes
+gulp.task('copy:build_src', function () {
+    return gulp.src([].concat(
+        userConfig.vendor_files.js,
+        userConfig.app_files.js,
+        userConfig.app_files.tpl,
+        userConfig.app_files.views,
+        userConfig.app_files.assets
+    ))
+    .pipe(copy(userConfig.build_dir));
+});
+
+// Inject essential file paths into index.html for build environment
+gulp.task('inject:build_index', function () {
+    var arraySources = flatGlob.sync([].concat(
+        userConfig.vendor_files.js,
+        userConfig.app_files.js
+
+    ));
+    var sources = gulp.src(arraySources, {read: false});
+    return gulp.src(userConfig.app_files.html)
+        .pipe(inject(sources, {addRootSlash: false, ignorePath: 'build'}))
+        .pipe(gulp.dest(userConfig.build_dir));
+});
 
 // Serve a site after running multiple tasks
 gulp.task('serve', function () {
     browserSync.init({
         server: {
-            baseDir: "src/.",
+            baseDir: "build/.",
             open: "local",
             browser: "google chrome"
         }
@@ -46,6 +77,11 @@ gulp.task('serve', function () {
 });
 
 gulp.task('default', function(){
-    gulp.start('serve');
+    runSequence(
+        'clean:build',
+        'copy:build_src',
+        'inject:build_index',
+        'serve'
+    );
 });
 

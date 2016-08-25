@@ -22,8 +22,9 @@ module.exports = {
 
     app_files: {
         all_files: ['src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js'],
-        js: ['app.js', '!src/**/*.spec.js', 'src/**/*.js'],
-        tpl: ['src/directives/**/*.html'],
+        js: ['src/app/app.js', '!src/**/*.spec.js', 'src/components/**/*.js'],
+        tpl: ['src/components/directives/**/*.html'],
+        views:['src/views/**/*.html'],
         html: ['src/index.html'],
         less: ['src/less/*.less'],
         assets: ['src/assets/**'],
@@ -32,14 +33,15 @@ module.exports = {
     },
     vendor_files: {
         js: [
-            'lib/jquery.min.js',
-            'lib/bootstrap.min.js',
-            'lib/angular.js',
-            'lib/ui-bootstrap-tpls.js',
-            'lib/angular-aria.js',
-            'lib/angular-translate.min.js',
-            'lib/angular-translate-loader-static-files.min.js',
-            'lib/angular-sanitize.min.js'
+            'src/lib/jquery.min.js',
+            'src/lib/bootstrap.min.js',
+            'src/lib/angular.js',
+            'src/lib/ui-bootstrap-tpls.js',
+            'src/lib/angular-aria.js',
+            'src/lib/angular-translate.min.js',
+            'src/lib/angular-translate-loader-static-files.min.js',
+            'src/lib/angular-sanitize.min.js',
+            'src/lib/angular-ui-router.min.js'
         ]
     }
 };

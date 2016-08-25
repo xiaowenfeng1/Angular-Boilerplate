@@ -5,6 +5,14 @@
   "NAVBAR_GOOGLE" : "Google",
   "NAVBAR_LINK" : "https://www.google.com/",
 
+  "GUESTLBL_TITLE": "Guest Title",
+  "GUESTRAD_MR"   : "Mr",
+  "GUESTRAD_MRS"  : "Mrs",
+  "GUESTRAD_MS"   : "Ms",
+  "GUESTRAD_MISS" : "Miss",
+  "GUESTRAD_MSTR" : "Mstr",
+
+
   "FOOTER" : "This is a footer, the link goes to Google.com",
   "FOOTER_LINK" : "https://www.google.com/"
 }

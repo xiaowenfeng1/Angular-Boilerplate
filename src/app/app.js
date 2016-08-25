@@ -1,40 +1,51 @@
 'use strict';
 
-var angular;
-
-angular.module('myApp', [
+var app = angular.module('myApp', [
     'ui.router',
-    'ngStorage' ,
     'ngAria',
-    'pascalprecht.translate'
-])
+    'pascalprecht.translate',
+    'ui.bootstrap',
+    'ngSanitize'
+]);
 
-    .config( function myAppConfig ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+    app.config(['$locationProvider','$translateProvider', '$urlRouterProvider', '$stateProvider',
+        function ($locationProvider, $translateProvider, $urlRouterProvider, $stateProvider) {
 
-        $compileProvider.debugInfoEnabled(false);
-        $urlRouterProvider.otherwise("/home");
+        $urlRouterProvider.otherwise("/");
         //main views get populated here.
         $stateProvider
             .state('home', {
-                url: "/home",
-                templateUrl: ""
+                url: "/",
+                templateUrl: "views/home.html"
             })
             .state('about', {
                 url: "/about",
-                templateUrl: ""
+                templateUrl: "views/about.html"
             });
 
         //Needed this to remove the # in the urls
         $locationProvider.html5Mode(true);
-    })
+
+        // translate provider config
+        $translateProvider.useStaticFilesLoader({
+            prefix: "src/assets/i18n/locale-",
+            suffix: ".json"
+        });
+
+        $translateProvider.preferredLanguage('en');
+        $translateProvider.fallbackLanguage('en');
+        $translateProvider.useSanitizeValueStrategy(null);
+    }])
 
     .run( function run () {
     })
 
-    .controller('MainController', function ($scope, $http, $localStorage, $sessionStorage){
+    .controller('MainController', function ($scope, $translate){
+    /*
         $http.get('js/data.json').success(function (data) {
             $scope.data = data;
         });
         $scope.$storage = $localStorage;
         $scope.$sessionStorage = $sessionStorage;
+        */
     });

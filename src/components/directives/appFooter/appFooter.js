@@ -1,7 +1,6 @@
 app.directive('appFooter', function() {
     return {
-        templateUrl: 'directives/appFooter/appFooter.html',
-        controller: 'appFooterController',
+        templateUrl: 'src/components/directives/appFooter/appFooter.tpl.html',
         restrict: 'E'
     }
 });
