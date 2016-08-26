@@ -33,6 +33,10 @@ var runSequence = require('run-sequence');
 var pkg = JSON.parse(fs.readFileSync('./package.json'));
 var userConfig = require('./config/build.config.js');
 
+// cachebust
+var APP_CSS_FILE = userConfig.appName + '-' + pkg.version +'-' + userConfig.now + '.css';
+var APP_JS_FILE = userConfig.appName + '-' + pkg.version + '-' + userConfig.now + '.js';
+
 function mergeArrays() {
     var outArr = [];
     for (var i in arguments) {
@@ -40,6 +44,12 @@ function mergeArrays() {
     }
     return outArr;
 }
+
+//delete bin folder
+gulp.task('clean:compileDir', function () {
+    return gulp.src([userConfig.compile_dir], {read:false})
+        .pipe(clean());
+});
 
 // Delete build folder
 gulp.task('clean:build', function () {
@@ -106,7 +116,7 @@ gulp.task('inject:build_index', function () {
 
 // Copy images from build dir to bin dir
 gulp.task('copy:bin_assets', function () {
-    return gulp.src(userConfig.build_dir + '/src/assets/**')
+    return gulp.src(userConfig.build_dir + '/assets/**')
         .pipe(gulp.dest(userConfig.compile_dir + '/assets/'));
 });
 
@@ -122,7 +132,7 @@ gulp.task('compile:bin_js', function () {
         .pipe(uglify({
             mangle: false
         }))
-        .pipe(concat('compiled.js'))
+        .pipe(concat(APP_JS_FILE))
         .pipe(gulp.dest(userConfig.compile_dir))
 });
 
@@ -151,6 +161,7 @@ gulp.task('serve', function () {
 
 gulp.task('default', function(){
     runSequence(
+        'clean:compileDir',
         'clean:build',
         'copy:build_src',
         'copy:build_assets',
