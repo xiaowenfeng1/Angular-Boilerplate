@@ -159,6 +159,20 @@ gulp.task('serve', function () {
     });
 });
 
+gulp.task('plato', function () {
+    return gulp.src(userConfig.app_files.js)
+        .pipe(plato('report', {
+            jshint: {
+                options: {
+                    strict: true
+                }
+            },
+            complexity: {
+                trycatch: true
+            }
+        }));
+});
+
 gulp.task('default', function(){
     runSequence(
         'clean:compileDir',
