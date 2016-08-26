@@ -52,11 +52,37 @@ gulp.task('copy:build_src', function () {
     .pipe(copy(userConfig.build_dir));
 });
 
+// compile directive templates into js
+gulp.task('html2js:app', function () {
+    return gulp.src(userConfig.app_files.tpl)
+        .pipe(html2js('templates-app', {
+            name: 'templates-app',
+            base: 'src/'
+        }))
+        .pipe(concat('templates-app.js'))
+        .pipe(clean({force: true}))
+        .pipe(gulp.dest(userConfig.build_dir));
+});
+
+// compile views to js
+gulp.task('html2js:views', function () {
+    return gulp.src(userConfig.app_files.views)
+        .pipe(html2js('templates-views', {
+            name: 'templates-views',
+            base: 'src/'
+        }))
+        .pipe(concat('templates-views.js'))
+        .pipe(clean({force: true}))
+        .pipe(gulp.dest(userConfig.build_dir))
+});
+
 // Inject essential file paths into index.html for build environment
 gulp.task('inject:build_index', function () {
     var arraySources = flatGlob.sync([].concat(
         userConfig.vendor_files.js,
-        userConfig.app_files.js
+        userConfig.app_files.js,
+        userConfig.build_dir + '/templates-app.js',
+        userConfig.build_dir + '/templates-views.js'
 
     ));
     var sources = gulp.src(arraySources, {read: false});
@@ -80,6 +106,8 @@ gulp.task('default', function(){
     runSequence(
         'clean:build',
         'copy:build_src',
+        'html2js:app',
+        'html2js:views',
         'inject:build_index',
         'serve'
     );

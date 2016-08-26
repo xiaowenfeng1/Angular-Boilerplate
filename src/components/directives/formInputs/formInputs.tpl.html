@@ -1,44 +1,67 @@
-<fieldset class="form-group"
-          ng-class="{ 'has-error': form[getName('title')].$invalid && !form[getName('title')].$pristine }">
-    <legend for="title" class="legend-hal control-label" translate="GUESTLBL_TITLE"></legend>
-    <div class="radio radio-title-guest">
-        <label><input
-                type="radio"
-                name="{{getName('title')}}"
-                ng-model="formObj.rooms[indexRoom].guest[indexGuest].title"
-                value="mr"
-                ng-required="!formObj.rooms[indexRoom].guest[indexGuest].title">{{'GUESTRAD_MR'| translate}}</label>
+<form name="inputForm" novalidate>
+    <div class="form-group"
+        ng-class="{ 'has-error': inputForm.guestName.$invalid && !inputForm.guestName.$pristine }">
+        <label for="guestName" class="control-label" translate="GUESTLBL_NAME"></label>
+        <input name="guestName"
+               id="guestName"
+               type="text"
+               class="form-control"
+               ng-pattern="/^[a-zA-Z0-9\ \,\.~\`!\@\#\$\^\*()\-_\+=\{\}\[\]\|\\;:\'\/]*$/"
+               ng-maxlength="30"
+               ng-minlength="2"
+               ng-model="form.guestName"
+               required />
+        <div ng-messages="inputForm.guestName.$error" ng-show="inputForm.guestName.$dirty"
+             role="alert" class="help-block">
+            <div ng-messages-include="components/directives/fieldValidation/fieldValidation.tpl.html"></div>
+        </div>
     </div>
-    <div class="radio radio-title-guest">
-        <label><input
-                type="radio"
-                name="{{getName('title')}}"
-                ng-model="formObj.rooms[indexRoom].guest[indexGuest].title"
-                value="mrs"
-                ng-required="!formObj.rooms[indexRoom].guest[indexGuest].title">{{'GUESTRAD_MRS'| translate}}</label>
-    </div>
-    <div class="radio radio-title-guest">
-        <label><input
-                type="radio"
-                name="{{getName('title')}}"
-                ng-model="formObj.rooms[indexRoom].guest[indexGuest].title"
-                value="ms"
-                ng-required="!formObj.rooms[indexRoom].guest[indexGuest].title">{{'GUESTRAD_MS'| translate}}</label>
-    </div>
-    <div class="radio radio-title-guest">
-        <label><input
-                type="radio"
-                name="{{getName('title')}}"
-                ng-model="formObj.rooms[indexRoom].guest[indexGuest].title"
-                value="miss"
-                ng-required="!formObj.rooms[indexRoom].guest[indexGuest].title">{{'GUESTRAD_MISS'| translate}}</label>
-    </div>
-    <div class="radio radio-title-guest">
-        <label><input
-                type="radio"
-                name="{{getName('title')}}"
-                ng-model="formObj.rooms[indexRoom].guest[indexGuest].title"
-                value="mstr" ng-required="!formObj.rooms[indexRoom].guest[indexGuest].title">{{'GUESTRAD_MSTR'| translate}}</label>
-    </div>
-   <!--add ng-messages -->
-</fieldset>
+    <fieldset class="form-group"
+              ng-class="{ 'has-error': inputForm.title.$invalid && !inputForm.title.$pristine }">
+        <label for="title" class="control-label" translate="GUESTLBL_TITLE"></label>
+        <div class="radio radio-title-guest">
+            <label><input
+                    type="radio"
+                    name="title"
+                    value="mr"
+                    ng-model="form.title"
+                    required />{{'GUESTRAD_MR'| translate}}</label>
+        </div>
+        <div class="radio radio-title-guest">
+            <label><input
+                    type="radio"
+                    name="title"
+                    value="mrs"
+                    ng-model="form.title"
+                    required />{{'GUESTRAD_MRS'| translate}}</label>
+        </div>
+        <div class="radio radio-title-guest">
+            <label><input
+                    type="radio"
+                    name="title"
+                    value="ms"
+                    ng-model="form.title"
+                    required />{{'GUESTRAD_MS'| translate}}</label>
+        </div>
+        <div class="radio radio-title-guest">
+            <label><input
+                    type="radio"
+                    name="title"
+                    value="miss"
+                    ng-model="form.title"
+                    required />{{'GUESTRAD_MISS'| translate}}</label>
+        </div>
+        <div class="radio radio-title-guest">
+            <label><input
+                    type="radio"
+                    name="title"
+                    value="mstr"
+                    ng-model="form.title"
+                    required />{{'GUESTRAD_MSTR'| translate}}</label>
+        </div>
+        <div ng-messages="inputForm.title.$error" ng-show="inputForm.title.$dirty" role="alert"
+             class="help-block">
+            <div ng-messages-include="components/directives/fieldValidation/fieldValidation.tpl.html"></div>
+        </div>
+    </fieldset>
+</form>

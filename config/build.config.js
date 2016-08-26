@@ -7,7 +7,7 @@ module.exports = {
      * development and the `compile_dir` folder is where our app resides once it's
      * completely built.
      */
-    appName: 'boilerplate-UI',
+    appName: 'BoilerplateUI',
     build_dir: 'build',
     compile_dir: 'bin',
     now: new Date().getTime(),
@@ -41,7 +41,8 @@ module.exports = {
             'src/lib/angular-translate.min.js',
             'src/lib/angular-translate-loader-static-files.min.js',
             'src/lib/angular-sanitize.min.js',
-            'src/lib/angular-ui-router.min.js'
+            'src/lib/angular-ui-router.min.js',
+            'src/lib/angular-messages.min.js'
         ]
     }
 };

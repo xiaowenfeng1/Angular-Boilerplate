@@ -4,8 +4,11 @@ var app = angular.module('myApp', [
     'ui.router',
     'ngAria',
     'pascalprecht.translate',
+    'ngMessages',
     'ui.bootstrap',
-    'ngSanitize'
+    'ngSanitize',
+    'templates-app',
+    'templates-views'
 ]);
 
     app.config(['$locationProvider','$translateProvider', '$urlRouterProvider', '$stateProvider',

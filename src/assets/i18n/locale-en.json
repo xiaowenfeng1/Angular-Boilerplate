@@ -11,7 +11,13 @@
   "GUESTRAD_MS"   : "Ms",
   "GUESTRAD_MISS" : "Miss",
   "GUESTRAD_MSTR" : "Mstr",
+  "GUESTLBL_NAME" : "Guest Name",
 
+  "INLINE_VALIDATION_MIN": "Input is not long enough.",
+  "INLINE_VALIDATION_MAX" : "Input is too long.",
+  "INLINE_VALIDATION_REQ" : "This is a required field.",
+  "INLINE_VALIDATION_PATTERN" : "Please enter a valid input.",
+  "INLINE_VALIDATION_EMAIL" : "Please enter a valid email.",
 
   "FOOTER" : "This is a footer, the link goes to Google.com",
   "FOOTER_LINK" : "https://www.google.com/"
