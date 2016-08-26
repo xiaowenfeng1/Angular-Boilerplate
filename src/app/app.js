@@ -7,6 +7,7 @@ var app = angular.module('myApp', [
     'ngMessages',
     'ui.bootstrap',
     'ngSanitize',
+    'ui.select',
     'templates-app',
     'templates-views'
 ]);

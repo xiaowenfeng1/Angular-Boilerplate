@@ -42,7 +42,8 @@ module.exports = {
             'src/lib/angular-translate-loader-static-files.min.js',
             'src/lib/angular-sanitize.min.js',
             'src/lib/angular-ui-router.min.js',
-            'src/lib/angular-messages.min.js'
+            'src/lib/angular-messages.min.js',
+            'src/lib/select.min.js'
         ]
     }
 };

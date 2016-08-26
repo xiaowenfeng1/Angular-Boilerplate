@@ -12,6 +12,10 @@
   "GUESTRAD_MISS" : "Miss",
   "GUESTRAD_MSTR" : "Mstr",
   "GUESTLBL_NAME" : "Guest Name",
+  "GUESTLBL_DBIRTH" : "Guest Birthday",
+  "GUESTLBL_COUNTRY" : "Country",
+
+  "BTN_SUBMIT" : "SUBMIT",
 
   "INLINE_VALIDATION_MIN": "Input is not long enough.",
   "INLINE_VALIDATION_MAX" : "Input is too long.",
