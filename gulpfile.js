@@ -33,6 +33,14 @@ var runSequence = require('run-sequence');
 var pkg = JSON.parse(fs.readFileSync('./package.json'));
 var userConfig = require('./config/build.config.js');
 
+function mergeArrays() {
+    var outArr = [];
+    for (var i in arguments) {
+        outArr = outArr.concat(arguments[i]);
+    }
+    return outArr;
+}
+
 // Delete build folder
 gulp.task('clean:build', function () {
     return gulp.src([userConfig.build_dir], {read:false})
@@ -46,10 +54,15 @@ gulp.task('copy:build_src', function () {
         userConfig.vendor_files.js,
         userConfig.app_files.js,
         userConfig.app_files.tpl,
-        userConfig.app_files.views,
-        userConfig.app_files.assets
+        userConfig.app_files.views
+
     ))
     .pipe(copy(userConfig.build_dir));
+});
+
+gulp.task('copy:build_assets', function () {
+    return gulp.src(userConfig.app_files.assets)
+        .pipe(gulp.dest(userConfig.build_dir + '/assets/'));
 });
 
 // compile directive templates into js
@@ -91,6 +104,40 @@ gulp.task('inject:build_index', function () {
         .pipe(gulp.dest(userConfig.build_dir));
 });
 
+// Copy images from build dir to bin dir
+gulp.task('copy:bin_assets', function () {
+    return gulp.src(userConfig.build_dir + '/src/assets/**')
+        .pipe(gulp.dest(userConfig.compile_dir + '/assets/'));
+});
+
+// Compile and compress js files, and put it into bin
+gulp.task('compile:bin_js', function () {
+    var files = mergeArrays(
+        userConfig.vendor_files.js,
+        userConfig.app_files.js,
+        userConfig.build_dir + '/templates-app.js',
+        userConfig.build_dir + '/templates-views.js'
+    );
+    return gulp.src(files)
+        .pipe(uglify({
+            mangle: false
+        }))
+        .pipe(concat('compiled.js'))
+        .pipe(gulp.dest(userConfig.compile_dir))
+});
+
+// Inject js and css files into index.html
+gulp.task('inject:bin_index', function () {
+    var arraySources = flatGlob.sync([].concat(
+        userConfig.compile_dir + '/*.js'
+        //userConfig.compile_dir + '/assets/*.css',
+    ));
+    var sources = gulp.src(arraySources, {read: false});
+    return gulp.src(userConfig.app_files.html)
+        .pipe(inject(sources, {addRootSlash: false, ignorePath: "bin"}))
+        .pipe(gulp.dest(userConfig.compile_dir));
+});
+
 // Serve a site after running multiple tasks
 gulp.task('serve', function () {
     browserSync.init({
@@ -106,9 +153,14 @@ gulp.task('default', function(){
     runSequence(
         'clean:build',
         'copy:build_src',
+        'copy:build_assets',
         'html2js:app',
         'html2js:views',
         'inject:build_index',
+        'copy:bin_assets',
+        //'compile:bin_css',
+        'compile:bin_js',
+        'inject:bin_index',
         'serve'
     );
 });

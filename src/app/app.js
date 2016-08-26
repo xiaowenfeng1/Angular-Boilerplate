@@ -32,7 +32,7 @@ var app = angular.module('myApp', [
 
         // translate provider config
         $translateProvider.useStaticFilesLoader({
-            prefix: "src/assets/i18n/locale-",
+            prefix: "assets/i18n/locale-",
             suffix: ".json"
         });
 

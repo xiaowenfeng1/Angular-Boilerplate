@@ -1,14 +1,14 @@
 app.directive('formInputs', function() {
     return {
-        templateUrl: 'src/components/directives/formInputs/formInputs.tpl.html',
+        templateUrl: 'components/directives/formInputs/formInputs.tpl.html',
         restrict: 'E',
         controller: 'formInputsController'
     }
 }).controller('formInputsController', function ($scope, $http) {
 
     $scope.country = {};
-    
-    $http.get('src/assets/data/country.json').success(function (data) {
+
+    $http.get('assets/data/country.json').success(function (data) {
         $scope.country.list = angular.fromJson(data);
     });
 
