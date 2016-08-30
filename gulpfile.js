@@ -59,15 +59,19 @@ gulp.task('clean:build', function () {
 
 // Copy files in src to build dir
 // html files in src are not used. They are for debugging purposes
-gulp.task('copy:build_src', function () {
+gulp.task('copy:build_src', ['copy:build_css'], function () {
     return gulp.src([].concat(
         userConfig.vendor_files.js,
         userConfig.app_files.js,
         userConfig.app_files.tpl,
         userConfig.app_files.views
-
     ))
     .pipe(copy(userConfig.build_dir));
+});
+
+gulp.task('copy:build_css', function () {
+    return gulp.src(userConfig.app_files.css)
+        .pipe(gulp.dest(userConfig.build_dir));
 });
 
 gulp.task('copy:build_assets', function () {

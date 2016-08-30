@@ -3,8 +3,9 @@ app.directive('formInputs', function() {
         templateUrl: 'components/directives/formInputs/formInputs.tpl.html',
         restrict: 'E',
         controller: 'formInputsController'
+
     }
-}).controller('formInputsController', function ($scope, $http) {
+}).controller('formInputsController', function ($scope, $http, $uibModal) {
 
     $scope.country = {};
 
@@ -28,6 +29,27 @@ app.directive('formInputs', function() {
 
     $scope.popup = {
         opened: false
+    };
+
+    $scope.click = function () {
+        $scope.openErrorModal();
+    };
+
+
+    $scope.openErrorModal = function () {
+
+        var modalOptions = {
+            templateUrl: 'components/modals/errorModal.tpl.html',
+            backdrop: 'static',
+            controller: 'modalController'
+            /*resolve: {
+                errorObj: function () {
+                    return errors;
+                }
+            } */
+        };
+
+        return $uibModal.open(modalOptions);
     };
 
 });

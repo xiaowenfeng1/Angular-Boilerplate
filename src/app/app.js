@@ -12,8 +12,8 @@ var app = angular.module('myApp', [
     'templates-views'
 ]);
 
-    app.config(['$locationProvider','$translateProvider', '$urlRouterProvider', '$stateProvider',
-        function ($locationProvider, $translateProvider, $urlRouterProvider, $stateProvider) {
+    app.config(['$locationProvider','$translateProvider', '$urlRouterProvider', '$stateProvider', '$ariaProvider',
+        function ($locationProvider, $translateProvider, $urlRouterProvider, $stateProvider, $ariaProvider) {
 
         $urlRouterProvider.otherwise("/");
         //main views get populated here.
@@ -26,6 +26,12 @@ var app = angular.module('myApp', [
                 url: "/about",
                 templateUrl: "views/about.html"
             });
+
+        // required to disable automatic append of role=button and tabindex=0
+        $ariaProvider.config({
+            bindRoleForClick: false,
+            tabindex: false
+        });
 
         //Needed this to remove the # in the urls
         $locationProvider.html5Mode(true);

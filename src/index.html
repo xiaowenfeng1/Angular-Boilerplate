@@ -9,6 +9,9 @@
     <title>{{'APP_TITLE'|translate}}</title>
     <link rel="shortcut icon" type="image/ico" href="assets/images/" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.18.1/select.min.css">
+    <link rel="stylesheet" href="main.css">
     <!-- inject:css -->
     <!-- endinject -->
 
@@ -20,7 +23,8 @@
     <h2 class="text-center">{{'APP_TITLE'|translate}}</h2>
     <nav-bar></nav-bar>
     <div class="container-fluid body-content">
-    <div ui-view></div>
+        <div ui-view></div>
+        <div id="push"></div> <!--push footer-->
     </div>
 
     <app-footer></app-footer>

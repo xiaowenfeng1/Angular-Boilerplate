@@ -24,5 +24,8 @@
   "INLINE_VALIDATION_EMAIL" : "Please enter a valid email.",
 
   "FOOTER" : "This is a footer, the link goes to Google.com",
-  "FOOTER_LINK" : "https://www.google.com/"
+  "FOOTER_LINKTEXT" : "Hi Google",
+  "FOOTER_LINK" : "https://www.google.com/",
+
+  "ABOUT_PAGE" : "<p class='text-center'>This is an example injecting HTML elements using <strong>Angular Translate</strong> with <strong>ng-bind-html</strong></p>"
 }

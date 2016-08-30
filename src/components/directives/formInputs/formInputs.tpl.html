@@ -102,24 +102,20 @@
          ng-class="{ 'has-error': inputForm.country.$invalid && !inputForm.country.$pristine }">
         <label for="country" class="control-label" translate="GUESTLBL_COUNTRY"></label>
         <div>
-            <ui-select ng-model="form.country" theme="bootstrap"
-                       name="country" title="country" required>
-                <ui-select-match>
-                    {{$select.selected.name}}
-                </ui-select-match>
+            <ui-select ng-model="inputForm.country" name="country" required>
+                <ui-select-match>{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="country in (country.list | filter: $select.search) track by country.code">
                     <div ng-bind-html="country.name | highlight: $select.search"></div>
                 </ui-select-choices>
             </ui-select>
-            <div ng-messages="inputForm.country.$error"
-                 ng-show="inputForm.country.$dirty" role="alert"
-                 class="help-block">
-                <div ng-messages-include="components/directives/fieldValidation/fieldValidation.tpl.html"></div>
-            </div>
+        </div>
+        <div ng-messages="inputForm.dob.$error" ng-show="inputForm.dob.$dirty"
+             role="alert" class="help-block">
+            <div ng-messages-include="components/directives/fieldValidation/fieldValidation.tpl.html"></div>
         </div>
     </div>
 
     <!-- button -->
 
-        <button ng-click="click()" class="btn btn-primary" translate="BTN_SUBMIT"></button>
+        <button ng-click="click()" class="btn btn-primary" type="button" translate="BTN_SUBMIT"></button>
 </form>

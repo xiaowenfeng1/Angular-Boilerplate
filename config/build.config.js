@@ -23,10 +23,11 @@ module.exports = {
     app_files: {
         all_files: ['src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js'],
         js: ['src/app/app.js', '!src/**/*.spec.js', 'src/components/**/*.js'],
-        tpl: ['src/components/directives/**/*.html'],
+        tpl: ['src/components/**/*.html'],
         views:['src/views/**/*.html'],
         html: ['src/index.html'],
-        less: ['src/less/*.less'],
+        //less: ['src/less/*.less'],
+        css : ['src/main.css'], // TODO: put all styles in the less
         assets: ['src/assets/**'],
         images: ['src/assets/images/**/*'],
         config: ['config/**/*']
