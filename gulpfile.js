@@ -177,7 +177,7 @@ gulp.task('plato', function () {
         }));
 });
 
-gulp.task('default', function(){
+gulp.task('build', function() {
     runSequence(
         'clean:compileDir',
         'clean:build',
@@ -189,7 +189,14 @@ gulp.task('default', function(){
         'copy:bin_assets',
         //'compile:bin_css',
         'compile:bin_js',
-        'inject:bin_index',
+        'inject:bin_index'
+    );
+
+});
+
+gulp.task('default', function(){
+    runSequence(
+        'build',
         'serve'
     );
 });
