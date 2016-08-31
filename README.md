@@ -2,6 +2,14 @@
 
 This is a boilerplate to help get started with a new Angular project
 
+#### Features
+* Gulp build and local server tasks
+* Responsive navigation
+* ngMessages
+* angular-translate
+* UI Bootstrap (ui-select & datepicker)
+* Minified and cache-busted JS files
+* ui-routing
 #### Prerequisites
 * java installed (for selenium server)
 * [Node.js/npm] (https://nodejs.org/en/) installed
