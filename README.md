@@ -10,6 +10,7 @@ This is a boilerplate to help get started with a new Angular project
 * UI Bootstrap (ui-select & datepicker)
 * Minified and cache-busted JS files
 * ui-routing
+
 #### Prerequisites
 * java installed (for selenium server)
 * [Node.js/npm] (https://nodejs.org/en/) installed
